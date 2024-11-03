@@ -56,6 +56,8 @@ class BookPreview extends HTMLElement {
             <h3 class="preview__title">${title}</h3>
             <div class="preview__author">${author}</div>
         </div>
-    </button>    
-    }`;
+    </button>  `;
+      
+    }
+
 }
