@@ -57,7 +57,8 @@ class BookPreview extends HTMLElement {
             <div class="preview__author">${author}</div>
         </div>
     </button>  `;
-      
+
     }
 
 }
+customElements.define('book-preview', BookPreview);

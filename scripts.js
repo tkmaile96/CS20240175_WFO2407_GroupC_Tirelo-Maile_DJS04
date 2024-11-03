@@ -1,4 +1,5 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js';
+import './previewWC.js' //import the  previewWC component
 
 let currentPage = 1;
 let filteredBooks = books;
@@ -18,11 +19,17 @@ function initializeUserInterface() {
  * Creates book preview buttons and appends them to the DOM.
  * @param {Array} booksToShow - List of books to display.
  */
+
+// changed the display BookPreviews function to accept an array of books
 function displayBookPreviews(booksToShow) {
     const fragment = document.createDocumentFragment();
-    booksToShow.forEach(({ author, id, image, title }) => {
-        const button = createBookPreviewButton({ author, id, image, title });
-        fragment.appendChild(button);
+    booksToShow.forEach(({ author, id, image, title}) => {
+        const bookPreview = document.createElement('book-preview');
+        bookPreview.setAttribute('id', id);
+        bookPreview.setAttribute('title', title);
+        bookPreview.setAttribute( 'author', authors[author]);
+        bookPreview.setAttribute('image', image);
+        fragment.appendChild(bookPreview);    
     });
     document.querySelector('[data-list-items]').appendChild(fragment);
 }
@@ -79,7 +86,7 @@ function setTheme() {
 
 /**
  * Apply the selected theme
- * @param {string} theme - The selected theme ('day' or 'night').
+ * @parameters {string} theme - The selected theme ('day' or 'night').
  */
 function applyTheme(theme) {
     document.querySelector('[data-settings-theme]').value = theme;
@@ -104,7 +111,7 @@ function updateShowMoreButton() {
 /**
  * Handles form submission for the search filters.
  * Filters books based on search
- * @param {Event} event - The form submit event.
+ * @parameters {Event} event - The form submit event.
  */
 function handleSearchForBooks(event) {
     event.preventDefault();
